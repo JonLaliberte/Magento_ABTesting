@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
     <default>
-        <reference name="google_analytics">
-            <action method="setTemplate"><template>creare/abtesting/ga.phtml</template></action>
+        <reference name="head">        	
+        	<block type="abtesting/js" name="abtesting.js.config">
+                <action ifconfig="abtesting/accounts/active" method="setTemplate"><name>creare/abtesting/js.phtml</name></action>
+            </block>
         </reference>
     </default>
 </layout>
