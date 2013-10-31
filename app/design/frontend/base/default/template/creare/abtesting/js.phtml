@@ -1,0 +1,27 @@
+<?php if (!Mage::helper('core/cookie')->isUserNotAllowSaveCookie()): ?>
+
+<?php $snippetId = Mage::getStoreConfig('abtesting/accounts/snippetid'); ?>
+
+
+<?php if(Mage::getStoreConfig('abtesting/accounts/active')): ?>
+
+<?php $experimentId = Mage::getStoreConfig('abtesting/accounts/expid'); ?>
+<?php $variationId = Mage::helper('abtesting')->getCode() ?>
+<?php if($variationId && $variationId != "" && $experimentId && $experimentId != ""): ?>
+
+<?php 
+/* Bucket the vistor using the experiment ID and the variation ID (which is depending on the cookie) */
+?>
+
+<script>
+window['optimizely'] = window['optimizely'] || [];
+window['optimizely'].push(["bucketVisitor", <?php echo $experimentId; ?>, <?php echo $variationId; ?>]);
+</script>
+
+<?php endif; ?>
+
+<?php endif; ?>
+
+<script src="//cdn.optimizely.com/js/<?php echo $snippetId; ?>.js"></script>
+
+<?php endif; ?>
